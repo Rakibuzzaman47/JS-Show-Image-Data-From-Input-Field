@@ -1,0 +1,29 @@
+<html>
+<style>
+img {
+	border: 10px solid red;
+}
+</style>
+<body>
+	<script>
+		function showPreviewImage() {
+			const file = document.querySelector('#uploadImage').files[0];
+			var reader = new FileReader();
+			reader.readAsDataURL(file);
+			reader.onload = function () {
+				localStorage.setItem("image", reader.result);
+				document.getElementById("uploadedImage").setAttribute("src", localStorage.getItem("image"))
+			}
+		}
+		if(localStorage.getItem("image"))
+			document.getElementById("uploadedImage").setAttribute("src", localStorage.getItem("image"))
+	</script>
+
+
+<input type="file" accept="image/*" id="uploadImage"><br>
+<button onclick="showPreviewImage()">Submit Picture</button><br>
+<img id="uploadedImage">
+
+</body>
+
+</html>
